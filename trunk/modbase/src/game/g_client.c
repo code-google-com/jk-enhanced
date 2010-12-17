@@ -2571,7 +2571,7 @@ void ClientBegin( int clientNum, qboolean allowTeamReset ) {
 
 		//Console Text print upon Entering game
 		if ( g_gametype.integer != GT_DUEL || g_gametype.integer == GT_POWERDUEL ) {
-			trap_SendServerCommand( ent-g_entities, "print \"\n^2Running Mod:^5 Jedi Knight Enhanced\n^2Version:^1 JKE Dev Build\n^2Authors: Setementor and Kaldor\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
+			trap_SendServerCommand( ent-g_entities, "print \"\n^2Running Mod:^5 Jedi Knight Enhanced\n^5Running Jedi Knight Enhanced\nVersion: Dev Build\nAuthors: Kaldor and Setementor\nwww.thejediacademy.net\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
 		}
 	}
 	G_LogPrintf( "ClientBegin: %i\n", clientNum );

@@ -2548,7 +2548,7 @@ void ClientThink_real( gentity_t *ent ) {
 
 			//Duel Health; thanks NeWaGe
 			{
-			trap_SendServerCommand( -1, va("print \"%s ^7has won the duel!\nHealth: ^5%d ^7/ ^5%d ^7 remains.\n\"",
+			trap_SendServerCommand( -1, va("print \"%s ^7Kaldor won the duel!\nHealth: ^5%d^7/^5%d ^7 remains.\nTime: ^1Coming soon...\n\"",
 			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ) );
 			}
 			//Duel Health end

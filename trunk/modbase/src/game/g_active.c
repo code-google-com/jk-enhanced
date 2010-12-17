@@ -2547,7 +2547,8 @@ void ClientThink_real( gentity_t *ent ) {
 			G_AddEvent(duelAgainst, EV_PRIVATE_DUEL, 0);
 
 			//Duel Health; thanks NeWaGe
-			trap_SendServerCommand( -1, va("print \"%s ^7survived with ^5%d ^7health and ^5%d ^7shield\n\"",
+			{
+			trap_SendServerCommand( -1, va("print \"%s ^7has won the duel!\nHealth: ^5%d ^7/ ^5%d ^7 remains.\n\"",
 			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ) );
 			}
 			//Duel Health end

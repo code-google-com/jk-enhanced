@@ -1365,8 +1365,9 @@ static void ClientCleanName( const char *in, char *out, int outSize ) {
 				break;
 			}
 
-			// don't allow black in a name, period
-			if( ColorIndex(*in) == 1 ) {
+			// don't allow black in a name, period < bullshit!
+			// 9 is a useless colour anyway
+			if( ColorIndex(*in) == 9 ) {
 				in++;
 				continue;
 			}

@@ -2546,6 +2546,12 @@ void ClientThink_real( gentity_t *ent ) {
 			G_AddEvent(ent, EV_PRIVATE_DUEL, 0);
 			G_AddEvent(duelAgainst, EV_PRIVATE_DUEL, 0);
 
+			//Duel Health; thanks NeWaGe
+			trap_SendServerCommand( -1, va("print \"%s ^7survived with ^5%d ^7health and ^5%d ^7shield\n\"",
+			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ) );
+			}
+			//Duel Health end
+
 			//Winner gets full health.. providing he's still alive
 			if (ent->health > 0 && ent->client->ps.stats[STAT_HEALTH] > 0)
 			{

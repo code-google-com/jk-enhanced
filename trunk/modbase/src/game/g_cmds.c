@@ -2862,7 +2862,7 @@ void Cmd_EngageDuel_f(gentity_t *ent)
 			ent->client->ps.duelTime = level.time + 2000;
 			challenged->client->ps.duelTime = level.time + 2000;
 
-			//setementor - duel start time
+			//setementor - duel timer
 			ent->client->duelStartTime = atoi(va( "%i", level.time ));
 			challenged->client->duelStartTime = atoi(va( "%i", level.time ));
 

@@ -1941,6 +1941,7 @@ void ClientThink_real( gentity_t *ent ) {
 	qboolean	isNPC = qfalse;
 	qboolean	controlledByPlayer = qfalse;
 	qboolean	killJetFlags = qtrue;
+	int			minutes, seconds; //setementor duel timer
 
 	client = ent->client;
 
@@ -2553,11 +2554,14 @@ void ClientThink_real( gentity_t *ent ) {
 			}
 			//Duel Health end
 
-			//setementor added duel time
-			trap_SendServerCommand( -1, va("print \"Time: ^5%i:%i\n\"",
-			(((level.time - ent->client->duelStartTime) / 1000) / 60),
-			(((level.time - ent->client->duelStartTime) / 1000) - ((((level.time - ent->client->duelStartTime) / 1000) / 60) * 60))
-			));
+			//setementor duel timer
+			minutes = (((level.time - ent->client->duelStartTime) / 1000) / 60);
+			seconds = (((level.time - ent->client->duelStartTime) / 1000) - (minutes * 60));
+			trap_SendServerCommand( -1, va("print \"Time: ^5%i:%i\n\"", minutes, seconds) );
+
+			//(((level.time - ent->client->duelStartTime) / 1000) / 60),
+			//(((level.time - ent->client->duelStartTime) / 1000) - ((((level.time - ent->client->duelStartTime) / 1000) / 60) * 60))
+			//));
 
 			//Winner gets full health.. providing he's still alive
 			if (ent->health > 0 && ent->client->ps.stats[STAT_HEALTH] > 0)

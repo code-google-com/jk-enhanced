@@ -2819,13 +2819,13 @@ void Cmd_EngageDuel_f(gentity_t *ent)
 		return;
 	}
 
-      /* //setementor - this prevents there being more than one duel at a time
+    /* //setementor - this prevents there being more than one duel at a time
 	if (G_OtherPlayersDueling())
 	{
 		trap_SendServerCommand( ent-g_entities, va("print \"%s\n\"", G_GetStringEdString("MP_SVGAME", "CANTDUEL_BUSY")) );
 		return;
 	}
-      */
+    */
 
 	AngleVectors( ent->client->ps.viewangles, forward, NULL, NULL );
 
@@ -2861,6 +2861,10 @@ void Cmd_EngageDuel_f(gentity_t *ent)
 
 			ent->client->ps.duelTime = level.time + 2000;
 			challenged->client->ps.duelTime = level.time + 2000;
+
+			//setementor - duel start time
+			ent->client->duelStartTime = atoi(va( "%i", level.time ));
+			challenged->client->duelStartTime = atoi(va( "%i", level.time ));
 
 			G_AddEvent(ent, EV_PRIVATE_DUEL, 1);
 			G_AddEvent(challenged, EV_PRIVATE_DUEL, 1);

@@ -218,6 +218,10 @@ vmCvar_t	g_powerDuelEndHealth;
 // DUEL_HEALTH
 vmCvar_t		g_showDuelHealths;
 
+//JKE Server Commands //setementor
+vmCvar_t g_allowBlackNames;
+vmCvar_t g_allowMultipleDuels;
+
 // bk001129 - made static to avoid aliasing
 static cvarTable_t		gameCvarTable[] = {
 	// don't override the cheat state set by the system
@@ -458,6 +462,10 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_showDuelHealths, "g_showDuelHealths", "0", CVAR_SERVERINFO },
 	{ &g_powerDuelStartHealth, "g_powerDuelStartHealth", "150", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_powerDuelEndHealth, "g_powerDuelEndHealth", "90", CVAR_ARCHIVE, 0, qtrue  },
+
+//JKE Server Commands //setementor
+	{ &g_allowBlackNames, "g_allowBlackNames", "1", CVAR_ARCHIVE, 0, qtrue  },
+	{ &g_allowBlackNames, "g_allowMultipleDuels", "1", CVAR_ARCHIVE, 0, qtrue  },
 };
 
 // bk001129 - made static to avoid aliasing

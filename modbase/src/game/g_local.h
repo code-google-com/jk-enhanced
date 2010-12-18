@@ -1661,6 +1661,9 @@ extern	vmCvar_t	g_powerDuelEndHealth;
 
 extern vmCvar_t		g_showDuelHealths;
 
+//JKE Server Commands //setementor
+extern vmCvar_t g_allowBlackNames;
+extern vmCvar_t g_allowMultipleDuels;
 
 void	trap_Printf( const char *fmt );
 void	trap_Error( const char *fmt );

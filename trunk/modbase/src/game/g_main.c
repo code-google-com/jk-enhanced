@@ -419,7 +419,7 @@ static cvarTable_t		gameCvarTable[] = {
 
 	{ &g_saberRealisticCombat, "g_saberRealisticCombat", "0", CVAR_CHEAT },
 	{ &g_saberRestrictForce, "g_saberRestrictForce", "0", CVAR_CHEAT },
-	{ &d_saberSPStyleDamage, "d_saberSPStyleDamage", "1", 0 }, //setementor removed cheat protection
+	{ &d_saberSPStyleDamage, "d_saberSPStyleDamage", "1", CVAR_CHEAT },
 
 	{ &debugNoRoam, "d_noroam", "0", CVAR_CHEAT },
 	{ &debugNPCAimingBeam, "d_npcaiming", "0", CVAR_CHEAT },

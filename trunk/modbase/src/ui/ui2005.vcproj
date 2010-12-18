@@ -4,7 +4,7 @@
 	Version="8.00"
 	Name="User Interface"
 	ProjectGUID="{2DDA2041-6A68-4754-B342-14039CC91695}"
-	RootNamespace="ui"
+	RootNamespace="ui2005"
 	>
 	<Platforms>
 		<Platform
@@ -278,7 +278,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="../Release/uix86.dll"
+				OutputFile="../../baseAAA/uix86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ui.def"

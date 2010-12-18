@@ -4,7 +4,7 @@
 	Version="8.00"
 	Name="Client Game"
 	ProjectGUID="{4DC69D68-9DB8-4DEB-AC63-481153B1F41D}"
-	RootNamespace="JK2cgame"
+	RootNamespace="JK2cgame2005"
 	>
 	<Platforms>
 		<Platform
@@ -80,7 +80,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="../Release/cgamex86.dll"
+				OutputFile="../../baseAAA/cgamex86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\JK2_cgame.def"

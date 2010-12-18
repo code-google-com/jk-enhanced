@@ -1367,7 +1367,8 @@ static void ClientCleanName( const char *in, char *out, int outSize ) {
 
 			// don't allow black in a name, period < bullshit!
 			// 9 is a useless colour anyway
-			if( ColorIndex(*in) == 9 ) {
+			//if( ColorIndex(*in) == 9 ) { //setementor - why change it to 9?  just comment it out!
+			if ( ColorIndex(*in) == 0 && !g_allowBlackNames.integer ) { //that's more like it
 				in++;
 				continue;
 			}

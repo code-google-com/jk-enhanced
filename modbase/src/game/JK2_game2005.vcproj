@@ -4,7 +4,7 @@
 	Version="8.00"
 	Name="Game"
 	ProjectGUID="{5B587283-8429-4F8B-AECA-C09BF364B617}"
-	RootNamespace="JK2game"
+	RootNamespace="JK2game2005"
 	>
 	<Platforms>
 		<Platform
@@ -79,7 +79,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="../Release/jampgamex86.dll"
+				OutputFile="../../baseAAA/jampgamex86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\JK2_game.def"
@@ -182,7 +182,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="../Final/jampgamex86.dll"
+				OutputFile="../../baseAAA/jampgamex86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\JK2_game.def"
@@ -380,7 +380,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="..\..\Mod Base\jampgamex86.dll"
+				OutputFile="..\..\baseAAA\jampgamex86.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\JK2_game.def"

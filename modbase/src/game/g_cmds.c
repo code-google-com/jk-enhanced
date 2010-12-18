@@ -2865,6 +2865,18 @@ void Cmd_EngageDuel_f(gentity_t *ent)
 			ent->client->duelStartTime = atoi(va( "%i", level.time ));
 			challenged->client->duelStartTime = atoi(va( "%i", level.time ));
 
+			//setementor - health restore
+			if (g_duelHealthRestore.integer) {
+				ent->client->ps.stats[STAT_HEALTH] = ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+				challenged->client->ps.stats[STAT_HEALTH] = challenged->health = challenged->client->ps.stats[STAT_MAX_HEALTH];
+			}
+
+			//setementor - shield restore
+			if (g_duelShieldRestoreLevel.integer) {
+				ent->client->ps.stats[STAT_ARMOR] = g_duelShieldRestoreLevel.integer;
+				challenged->client->ps.stats[STAT_ARMOR] = g_duelShieldRestoreLevel.integer;
+			}
+
 			G_AddEvent(ent, EV_PRIVATE_DUEL, 1);
 			G_AddEvent(challenged, EV_PRIVATE_DUEL, 1);
 

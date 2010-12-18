@@ -2548,10 +2548,16 @@ void ClientThink_real( gentity_t *ent ) {
 
 			//Duel Health; thanks NeWaGe
 			{
-			trap_SendServerCommand( -1, va("print \"%s ^7 won the duel!\nHealth: ^5%d^7/^5%d ^7 remains.\nTime: ^1Coming soon...\n\"",
-			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ) );
+				trap_SendServerCommand( -1, va("print \"%s ^7 won the duel!\nHealth: ^5%d^7/^5%d ^7 remains.\n\"",
+			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ));
 			}
 			//Duel Health end
+
+			//setementor added duel time
+			trap_SendServerCommand( -1, va("print \"Time: ^5%i:%i\n\"",
+			(((level.time - ent->client->duelStartTime) / 1000) / 60),
+			(((level.time - ent->client->duelStartTime) / 1000) - ((((level.time - ent->client->duelStartTime) / 1000) / 60) * 60))
+			));
 
 			//Winner gets full health.. providing he's still alive
 			if (ent->health > 0 && ent->client->ps.stats[STAT_HEALTH] > 0)

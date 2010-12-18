@@ -737,6 +737,8 @@ struct gclient_s {
 
 	int			lastGenCmd;
 	int			lastGenCmdTime;
+
+	int			duelStartTime; //setementor - added duel time
 };
 
 //Interest points

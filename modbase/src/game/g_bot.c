@@ -480,7 +480,7 @@ int G_RemoveRandomBot( int team ) {
 		}
 		strcpy(netname, cl->pers.netname);
 		Q_CleanStr(netname);
-		trap_SendConsoleCommand( EXEC_INSERT, va("clientkick \"%d\"\n", cl->ps.clientNum));
+		trap_SendConsoleCommand( EXEC_INSERT, va("clientkick \"%d\"\n", cl->ps.clientNum)); //kaldor - fixed bug that caused spectator to be kicked instead of the bot.
 		return qtrue;
 	}
 	return qfalse;
@@ -733,6 +733,7 @@ static void AddBotToSpawnQueue( int clientNum, int delay ) {
 	G_Printf( S_COLOR_YELLOW "Unable to delay spawn\n" );
 	ClientBegin( clientNum, qfalse );
 }
+
 
 
 /*

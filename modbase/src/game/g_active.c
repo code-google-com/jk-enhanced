@@ -2556,8 +2556,10 @@ void ClientThink_real( gentity_t *ent ) {
 			minutes = (((level.time - ent->client->duelStartTime) / 1000) / 60);
 			seconds = (((level.time - ent->client->duelStartTime) / 1000) - (minutes * 60));
 
-			trap_SendServerCommand( -1, va("print \"Time: ^5%d:%d\n\"",
-				((minutes < 10) ? va( "0%i", minutes ) : va( "%i", minutes )),
+			//setementor - forced to use two of these due to strange print bug
+			trap_SendServerCommand( -1, va("print \"Time: ^5%s^7:\"",
+				((minutes < 10) ? va( "0%i", minutes ) : va( "%i", minutes )) ) );
+			trap_SendServerCommand( -1, va("print \"^5%s^7\n\"",
 				((seconds < 10) ? va( "0%i", seconds ) : va( "%i", seconds ))
 			) );
 

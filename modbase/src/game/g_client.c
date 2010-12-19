@@ -2594,9 +2594,9 @@ void ClientBegin( int clientNum, qboolean allowTeamReset ) {
 		tent = G_TempEntity( ent->client->ps.origin, EV_PLAYER_TELEPORT_IN );
 		tent->s.clientNum = ent->s.clientNum;
 
-		//Console Text print upon Entering game
+		//kaldor - Console Text print upon Entering game
 		if ( g_gametype.integer != GT_DUEL || g_gametype.integer == GT_POWERDUEL ) {
-			trap_SendServerCommand( ent-g_entities, "print \"\n^2Running Mod:^5 Jedi Knight Enhanced\n^5Running Jedi Knight Enhanced\nVersion: Dev Build\nAuthors: Kaldor and Setementor\nwww.thejediacademy.net\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
+			trap_SendServerCommand( ent-g_entities, "print \"\n^5Running JK Enhanced Dev Build\nVisit our website:\nhttp://code.google.com/p/jk-enhanced/\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
 		}
 	}
 	G_LogPrintf( "ClientBegin: %i\n", clientNum );

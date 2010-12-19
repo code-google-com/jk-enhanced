@@ -326,7 +326,7 @@ static cvarTable_t		gameCvarTable[] = {
 
 	{ &g_synchronousClients, "g_synchronousClients", "0", CVAR_SYSTEMINFO, 0, qfalse  },
 
-	{ &d_saberInterpolate, "d_saberInterpolate", "0", CVAR_CHEAT, 0, qtrue },
+	{ &d_saberInterpolate, "d_saberInterpolate", "0", 0, 0, qtrue }, //setementor - removed cheat protection temporarily for testing
 
 	{ &g_friendlyFire, "g_friendlyFire", "0", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_friendlySaber, "g_friendlySaber", "0", CVAR_ARCHIVE, 0, qtrue  },
@@ -425,7 +425,7 @@ static cvarTable_t		gameCvarTable[] = {
 
 	{ &g_saberRealisticCombat, "g_saberRealisticCombat", "0", CVAR_CHEAT },
 	{ &g_saberRestrictForce, "g_saberRestrictForce", "0", CVAR_CHEAT },
-	{ &d_saberSPStyleDamage, "d_saberSPStyleDamage", "1", CVAR_CHEAT },
+	{ &d_saberSPStyleDamage, "d_saberSPStyleDamage", "1", 0},//CVAR_CHEAT }, //setementor - removed cheat protection temporarily for testing
 
 	{ &debugNoRoam, "d_noroam", "0", CVAR_CHEAT },
 	{ &debugNPCAimingBeam, "d_npcaiming", "0", CVAR_CHEAT },

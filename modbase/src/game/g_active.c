@@ -2555,7 +2555,11 @@ void ClientThink_real( gentity_t *ent ) {
 			//setementor duel timer
 			minutes = (((level.time - ent->client->duelStartTime) / 1000) / 60);
 			seconds = (((level.time - ent->client->duelStartTime) / 1000) - (minutes * 60));
-			trap_SendServerCommand( -1, va("print \"Time: ^5%i:%i\n\"", minutes, seconds) );
+
+			trap_SendServerCommand( -1, va("print \"Time: ^5%d:%d\n\"",
+				((minutes < 10) ? va( "0%i", minutes ) : va( "%i", minutes )),
+				((seconds < 10) ? va( "0%i", seconds ) : va( "%i", seconds ))
+			) );
 
 			//Winner gets full health.. providing he's still alive
 			if (ent->health > 0 && ent->client->ps.stats[STAT_HEALTH] > 0)

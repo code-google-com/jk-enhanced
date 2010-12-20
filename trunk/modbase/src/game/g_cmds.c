@@ -1623,8 +1623,8 @@ static void Cmd_Say_f( gentity_t *ent, int mode, qboolean arg0 ) {
 Cmd_Tell_f
 ==================
 */
-static void Cmd_Tell_f( gentity_t *ent ) {
-	int			targetNum, i;
+static void Cmd_Tell_f( gentity_t *ent ) { 		//kaldor - tell fix taken from ClanMod
+	int			targetNum;
 	gentity_t	*target;
 	char		*p;
 	char		arg[MAX_TOKEN_CHARS];
@@ -1634,27 +1634,25 @@ static void Cmd_Tell_f( gentity_t *ent ) {
 	}
 
 	trap_Argv( 1, arg, sizeof( arg ) );
-	targetNum = atoi( arg );
-	if ( targetNum < 0 || targetNum >= level.maxclients ) {
-		//setementor - if not an acceptable number, find string inside of a player name instead
-		for ( i = 0; i < level.numConnectedClients; i++ ) {
-			if ( *strstr(ent->client->pers.netname, g_entities[level.sortedClients[i]].client->pers.netname) ) {
-				targetNum = level.sortedClients[i];
-			}
-		}
 
-		if ( targetNum < 0 || targetNum >= level.maxclients ) {
-			return; // if we still can't identify the target, return
-		}
+	targetNum = G_ClientNumberFromArg( arg );
+	if ( targetNum < 0 || targetNum >= level.maxclients ) {
+		return;
 	}
 
 	target = &g_entities[targetNum];
-
 	if ( !target || !target->inuse || !target->client ) {
 		return;
 	}
 
 	p = ConcatArgs( 2 );
+
+	/* FIX Gamall : This bit should prevent crashes... */
+	if ( strlen(p) > 150 )
+	{
+		p[149] = 0 ;
+	}
+	/* END OF FIX */
 
 	G_LogPrintf( "tell: %s to %s: %s\n", ent->client->pers.netname, target->client->pers.netname, p );
 	G_Say( ent, target, SAY_TELL, p );

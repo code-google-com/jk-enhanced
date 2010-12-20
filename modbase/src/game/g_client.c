@@ -2259,10 +2259,10 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 	char		*value;
 //	char		*areabits;
 	gclient_t	*client;
-	char		userinfo[MAX_INFO_STRING], userinfo2[MAX_INFO_STRING]; //setementor q3fill
-	gentity_t	*ent, *sent; //setementor q3fill
+	char		userinfo[MAX_INFO_STRING], sUserinfo[MAX_INFO_STRING];
+	gentity_t	*ent, *sEnt; //setementor q3fill
 	gentity_t	*te;
-	int			sameIPs; //setementor q3fill
+	int			i, sameIPs; //setementor q3fill
 
 	ent = &g_entities[ clientNum ];
 
@@ -2274,6 +2274,29 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 		return "Banned.";
 	}
 
+	//setementor q3fill fix - check there's no more than three of the same IP
+	if ( firstTime )
+	{
+		for ( i = 0, sameIPs = 0; i < level.maxclients; i++ )
+		{
+			sEnt = &g_entities[level.sortedClients[i]];
+
+			if ( sEnt && sEnt->client && sEnt->client->pers.connected == CON_CONNECTED )
+			{ // is a valid and connected client
+				trap_GetUserinfo(sEnt->client->ps.clientNum, sUserinfo, sizeof(sUserinfo));
+				if (*value && *value == *Info_ValueForKey(sUserinfo, "ip"))
+				{ // IPs are the same
+					sameIPs++;
+				}
+			}
+		}
+
+		if (sameIPs > 3)
+		{
+			return "Too many clients from this IP.";
+		}
+	}
+
 	if ( !( ent->r.svFlags & SVF_BOT ) && !isBot && g_needpass.integer ) {
 		// check for a password
 		value = Info_ValueForKey (userinfo, "password");
@@ -2283,29 +2306,6 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 			Q_strncpyz(sTemp, G_GetStringEdString("MP_SVGAME","INVALID_ESCAPE_TO_MAIN"), sizeof (sTemp) );
 			return sTemp;// return "Invalid password";
 		}
-	}
-
-	//setementor q3fill fix - check there's no more than three of the same IP and that user has a model
-	sameIPs = 0;
-	sent = &g_entities[1];
-	value = Info_ValueForKey (userinfo, "ip");
-	while ( sent && sent->client )
-	{
-		trap_GetUserinfo(sent->client->ps.clientNum, userinfo2, sizeof(userinfo2));
-		if ((*value == *(Info_ValueForKey (userinfo2, "ip"))) && sent->client->sess.sessionTeam)
-		{ //had to make it only check the IPs of clients that have successfully entered the game because all unused client slots were using my local IP
-			G_LogPrintf( "%s", Info_ValueForKey(userinfo2, "ip") );
-			sameIPs++;
-		}
-		sent++;
-	}
-	if (sameIPs > 2)
-	{
-		return "Too many clients from this IP.";
-	}
-	if (!(*(Info_ValueForKey (userinfo, "model"))))
-	{ //some attackers *may* not have filled variables like this
-		return "Invalid client.";
 	}
 
 	// they can connect

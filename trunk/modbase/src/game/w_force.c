@@ -289,6 +289,7 @@ void WP_InitForcePowers( gentity_t *ent )
 	}
 
 	Q_strncpyz( forcePowers, Info_ValueForKey (userinfo, "forcepowers"), sizeof( forcePowers ) );
+
 	// kaldor - Force crash fix from Gamall
        temp = gaCheckForceString(forcePowers);
        if (temp != forcePowers) {

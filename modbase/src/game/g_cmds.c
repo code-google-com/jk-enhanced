@@ -1627,7 +1627,7 @@ static void Cmd_Tell_f( gentity_t *ent ) {
 	int			targetNum, i;
 	gentity_t	*target;
 	char		*p;
-	char		arg[MAX_TOKEN_CHARS];
+	char		arg[MAX_TOKEN_CHARS], netname[36];
 
 	if ( trap_Argc () < 2 ) {
 		return;
@@ -1635,15 +1635,18 @@ static void Cmd_Tell_f( gentity_t *ent ) {
 
 	trap_Argv( 1, arg, sizeof( arg ) );
 	targetNum = atoi( arg );
-	if ( targetNum < 0 || targetNum >= level.maxclients ) {
-		//setementor - if not an acceptable number, find string inside of a player name instead
+	if ( (targetNum == 0 && Q_stricmp(arg, "0") != 0) || //fixes bug with strings being counted as a '0'
+		targetNum < 0 || targetNum >= level.maxclients )
+	{ //setementor - if not an acceptable number, find string inside of a player name instead
 		for ( i = 0; i < level.numConnectedClients; i++ ) {
-			if ( *strstr(g_entities[level.sortedClients[i]].client->pers.netname, arg) ) {
+			strcpy(netname, g_entities[level.sortedClients[i]].client->pers.netname);
+			if ( strstr(Q_strlwr(netname), Q_strlwr(arg)) ) {
 				targetNum = level.sortedClients[i];
+				break;
 			}
 		}
 
-		if ( targetNum < 0 || targetNum >= level.maxclients ) {
+		if ( i == level.numConnectedClients ) {
 			return; // if we still can't identify the target, return
 		}
 	}
@@ -1654,6 +1657,11 @@ static void Cmd_Tell_f( gentity_t *ent ) {
 	}
 
 	p = ConcatArgs( 2 );
+
+	//setementor for some reason people can send empty messages
+	if ( !strlen(p) ) {
+		return;
+	}
 
 	//kaldor added this
 	/* FIX Gamall : This bit should prevent crashes... */

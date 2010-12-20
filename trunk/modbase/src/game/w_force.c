@@ -293,10 +293,10 @@ void WP_InitForcePowers( gentity_t *ent )
 	// kaldor - Force crash fix from Gamall
        temp = gaCheckForceString(forcePowers);
        if (temp != forcePowers) {
-         trap_SendServerCommand(ent->client->pers.clientNum, 
+         trap_SendServerCommand(ent->client->ps.cientNum, 
              va("print \"^1Incorrect force string '%s'. Replaced by default.\n\"", forcePowers));
          G_LogPrintf("FORCE CRASH: Client num %d tried to take incorrect forcestring '%s'.",
-                     ent->client->pers.clientNum, 
+                     ent->client->ps.cientNum, 
                      forcePowers);
          Q_strncpyz( forcePowers, temp, sizeof( forcePowers ) );
        } // End force crash workaround

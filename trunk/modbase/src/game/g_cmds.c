@@ -1624,7 +1624,7 @@ Cmd_Tell_f
 ==================
 */
 static void Cmd_Tell_f( gentity_t *ent ) {
-	int			targetNum;
+	int			targetNum, i;
 	gentity_t	*target;
 	char		*p;
 	char		arg[MAX_TOKEN_CHARS];
@@ -1636,10 +1636,20 @@ static void Cmd_Tell_f( gentity_t *ent ) {
 	trap_Argv( 1, arg, sizeof( arg ) );
 	targetNum = atoi( arg );
 	if ( targetNum < 0 || targetNum >= level.maxclients ) {
-		return;
+		//setementor - if not an acceptable number, find string inside of a player name instead
+		for ( i = 0; i < level.numConnectedClients; i++ ) {
+			if ( *strstr(ent->client->pers.netname, g_entities[level.sortedClients[i]].client->pers.netname) ) {
+				targetNum = level.sortedClients[i];
+			}
+		}
+
+		if ( targetNum < 0 || targetNum >= level.maxclients ) {
+			return; // if we still can't identify the target, return
+		}
 	}
 
 	target = &g_entities[targetNum];
+
 	if ( !target || !target->inuse || !target->client ) {
 		return;
 	}
@@ -3133,6 +3143,17 @@ void ClientCommand( int clientNum ) {
 
 	if (Q_stricmp (cmd, "score") == 0) {
 		Cmd_Score_f (ent);
+		return;
+	}
+
+	//setementor - JKE console commands
+	if (Q_stricmp (cmd, "version") == 0) {
+		trap_SendServerCommand( ent-g_entities, va("print \"JK Enhanced Dev Version\n\""));
+		return;
+	}
+
+	if (Q_stricmp (cmd, "aminfo") == 0) {
+		trap_SendServerCommand( ent-g_entities, va("print \"Commands: version, aminfo\n\""));
 		return;
 	}
 

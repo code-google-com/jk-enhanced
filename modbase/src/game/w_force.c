@@ -155,7 +155,7 @@ const int mindTrickTime[NUM_FORCE_POWER_LEVELS] =
            return s;   
        }
        
-       // GWI: End Force Crash workaround.
+       // kaldor - force crash from Gamall >kalfix
 void WP_InitForcePowers( gentity_t *ent )
 {
 	int i;

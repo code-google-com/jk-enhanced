@@ -3148,12 +3148,12 @@ void ClientCommand( int clientNum ) {
 
 	//setementor - JKE console commands
 	if (Q_stricmp (cmd, "version") == 0) {
-		trap_SendServerCommand( ent-g_entities, va("print \"JK Enhanced Dev Version\n\""));
+		trap_SendServerCommand( ent-g_entities, va("print \"^5JK Enhanced Daily Build\n\""));
 		return;
 	}
 
 	if (Q_stricmp (cmd, "aminfo") == 0) {
-		trap_SendServerCommand( ent-g_entities, va("print \"Commands: version, aminfo\n\""));
+		trap_SendServerCommand( ent-g_entities, va("print \"^5Commands: version, aminfo\n\""));
 		return;
 	}
 

@@ -135,27 +135,28 @@ const int mindTrickTime[NUM_FORCE_POWER_LEVELS] =
 	10000,
 	15000
 };
- /*
-        * Gamall Wednesday Ida
-        * Workaround Force crash
-        * License GPL.
+
+/*
+    * Gamall Wednesday Ida
+    * Workaround Force crash
+    * License GPL.
 	* Added by Kaldor
-        */
-       
-       // if the force string is incorrect, this one will be used
-       char  *gaGENERIC_FORCE   = "7-1-033330000000000333";
-       // masks: no values outside these boundaries will be accepted
-       char  *gaFORCE_LOWER    = "0-1-000000000000000000";
-       char  *gaFORCE_UPPER    = "7-2-333333333333333333";
-       
-       char* gaCheckForceString(char* s) {
-           char *p = s, *pu = gaFORCE_UPPER, *pl = gaFORCE_LOWER;
-           if (!s || strlen(s) != 22) return gaGENERIC_FORCE;
-           while(*p) {if (*p > *pu++ || *p++ < *pl++) {return gaGENERIC_FORCE;}}
-           return s;   
-       }
-       
-       // kaldor - force crash from Gamall >kalfix
+*/
+
+// if the force string is incorrect, this one will be used
+char  *gaGENERIC_FORCE   = "7-1-033330000000000333";
+// masks: no values outside these boundaries will be accepted
+char  *gaFORCE_LOWER    = "0-1-000000000000000000";
+char  *gaFORCE_UPPER    = "7-2-333333333333333333";
+
+char* gaCheckForceString(char* s) {
+	char *p = s, *pu = gaFORCE_UPPER, *pl = gaFORCE_LOWER;
+    if (!s || strlen(s) != 22) return gaGENERIC_FORCE;
+    while(*p) {if (*p > *pu++ || *p++ < *pl++) {return gaGENERIC_FORCE;}}
+	return s;   
+}
+
+// kaldor - force crash from Gamall >kalfix
 void WP_InitForcePowers( gentity_t *ent )
 {
 	int i;
@@ -168,8 +169,8 @@ void WP_InitForcePowers( gentity_t *ent )
 	char readBuf[256];
 	int lastFPKnown = -1;
 	qboolean didEvent = qfalse;
-	 // kaldor - force crash from Gamall
-       char* temp;
+	// kaldor - force crash from Gamall
+    char* temp;
 
 	if (!maxRank)
 	{ //if server has no max rank, default to max (50)
@@ -290,21 +291,22 @@ void WP_InitForcePowers( gentity_t *ent )
 
 	Q_strncpyz( forcePowers, Info_ValueForKey (userinfo, "forcepowers"), sizeof( forcePowers ) );
 
-	// kaldor - Force crash fix from Gamall
-       temp = gaCheckForceString(forcePowers);
-       if (temp != forcePowers) {
-         trap_SendServerCommand(ent->client->ps.clientNum, 
-             va("print \"^1Incorrect force string '%s'. Replaced by default.\n\"", forcePowers));
-         G_LogPrintf("FORCE CRASH: Client num %d tried to take incorrect forcestring '%s'.",
-                     ent->client->ps.clientNum, 
-                     forcePowers);
-         Q_strncpyz( forcePowers, temp, sizeof( forcePowers ) );
-       } // End force crash workaround
-
+	//setementor - bot forcestring info should be set BEFORE the forcestring fix below!
 	if ( (ent->r.svFlags & SVF_BOT) && botstates[ent->s.number] )
 	{ //if it's a bot just copy the info directly from its personality
 		Com_sprintf(forcePowers, sizeof(forcePowers), "%s\0", botstates[ent->s.number]->forceinfo);
 	}
+
+	// kaldor - Force crash fix from Gamall
+    temp = gaCheckForceString(forcePowers);
+    if (temp != forcePowers && !(ent->r.svFlags & SVF_BOT)) { //setementor - no point for bots?
+		trap_SendServerCommand(ent->client->ps.clientNum, 
+        va("print \"^1Incorrect force string '%s'. Replaced by default.\n\"", forcePowers));
+         G_LogPrintf("FORCE CRASH: Client num %d tried to take incorrect forcestring '%s'.",
+                     ent->client->ps.clientNum, 
+                     forcePowers);
+         Q_strncpyz( forcePowers, temp, sizeof( forcePowers ) );
+    } // End force crash workaround
 
 	//rww - parse through the string manually and eat out all the appropriate data
 	i = 0;

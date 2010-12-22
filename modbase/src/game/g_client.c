@@ -2281,7 +2281,7 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 		{
 			sEnt = &g_entities[level.sortedClients[i]];
 
-			if ( sEnt && sEnt->client && sEnt->client->pers.connected == CON_CONNECTED )
+			if ( sEnt && sEnt->client && sEnt->client->pers.connected != CON_DISCONNECTED )
 			{ // is a valid and connected client
 				trap_GetUserinfo(sEnt->client->ps.clientNum, sUserinfo, sizeof(sUserinfo));
 				if (*value && *value == *Info_ValueForKey(sUserinfo, "ip"))

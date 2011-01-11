@@ -3812,6 +3812,22 @@ void ClientSpawn(gentity_t *ent) {
 	//rww - make sure client has a valid icarus instance
 	trap_ICARUS_FreeEnt( ent );
 	trap_ICARUS_InitEnt( ent );
+
+	//setementor - kick them if they use duals or staff
+	if (((ent->client->saber[0].model[0] &&
+		ent->client->saber[1].model[0]) ||
+		(ent->client->saber[0].saberFlags&SFL_TWO_HANDED)) &&
+		g_singleSaberOnly.integer)
+	{
+		if ((ent->r.svFlags & SVF_BOT))
+		{
+			trap_SendConsoleCommand( EXEC_INSERT, va("clientkick \"%d\"\n", ent->client->ps.clientNum));
+		}
+		else
+		{
+			trap_DropClient( ent->client->ps.clientNum, "Dual and Staff sabers forbidden on this server." );
+		}
+	}
 }
 
 

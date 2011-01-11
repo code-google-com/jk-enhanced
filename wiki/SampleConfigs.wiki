@@ -2,8 +2,10 @@
 
 Some pre-configured server.cfg files for quicker server setup.
 
+<wiki:toc max_depth="10" />
 
-= Saber Only/No Force Standard = 
+
+== Saber Only/No Force Standard == 
 
 {{{
 seta sv_hostname "My JKE Server" // Insert your server name here

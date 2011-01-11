@@ -1,0 +1,25 @@
+= Jedi Knight Enhanced =
+
+JK Enhanced (JKE) aims to be a stable multiplayer server choice for Jedi Academy.
+
+It adds some useful things to the default game such as Black Names, multiple duels and others while trying to keep the gameplay identical to basejka. 
+
+If players so desire, they are free and able to alter gameplay-changing cvars that have been added, but unlike other mods they are disabled by default.
+
+JKE was influenced by Jedi Academy Empire (JAE) Mod, but does have some added content that can potentially make the gameplay completely different from basejka.
+
+
+== New Cvars ==
+
+|| *Cvar* || *Base* || *JKE* || *Description ||
+|| g_allowBlackNames || _N/A_ || On || Allows ^0 in player name (black name) || 
+|| g_allowMultipleDuels || _N/A_ || On || In FFA, allows more than one pair to duel at once || 
+|| g_duelHealthRestore || _N/A_ || On || Resets duel health and shield at the start of a duel || 
+|| g_duelShieldRestoreLevel || _N/A_ || 50 || The amount of shields a player is given at duel start in FFA || 
+|| d_saberSPStyleDamage || Cheat Protected (Enabled) || On || If set to 0, makes sabering like on JA+ and JK2 || 
+|| d_saberInterpolate || Cheat Protected (Disabled) || Off || If set to 1, makes saber blocking realistic and reduces saber damage ||
+|| g_singleSaberOnly || _N/A_ || Off || If set to 1, kicks players who use Dual or Two-handed (Staff) saber ||
+
+
+
+

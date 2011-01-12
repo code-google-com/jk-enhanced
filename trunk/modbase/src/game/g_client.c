@@ -2596,7 +2596,7 @@ void ClientBegin( int clientNum, qboolean allowTeamReset ) {
 
 		//kaldor - Console Text print upon Entering game
 		if ( g_gametype.integer != GT_DUEL || g_gametype.integer == GT_POWERDUEL ) {
-			trap_SendServerCommand( ent-g_entities, "print \"\n^5JK Enhanced Mod\nUse /aminfo for help\nVisit our website:\nhttp://code.google.com/p/jk-enhanced/\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
+			trap_SendServerCommand( ent-g_entities, "print \"\n^5JKE v0.x Dev\nUse /aminfo for help\nVisit our website:\nhttp://code.google.com/p/jk-enhanced/\n\"" ); ( -1, va("print \"%s" S_COLOR_WHITE " %s\n\"", client->pers.netname, G_GetStringEdString("MP_SVGAME", "PLENTER")) );
 		}
 	}
 	G_LogPrintf( "ClientBegin: %i\n", clientNum );

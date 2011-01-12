@@ -2822,6 +2822,7 @@ void Cmd_EngageDuel_f(gentity_t *ent)
 
 	/*
 
+
 	if (!ent->client->ps.saberHolstered)
 	{ //must have saber holstered at the start of the duel
 		return;
@@ -3165,7 +3166,7 @@ void ClientCommand( int clientNum ) {
 
 	//setementor - JKE console commands
 	if (Q_stricmp (cmd, "uname") == 0) {
-		trap_SendServerCommand( ent-g_entities, va("print \"^5JK Enhanced Development Build\n\""));
+		trap_SendServerCommand( ent-g_entities, va("print \"^5JK Enhanced Version 0.x ^1(Dev Build)\n\""));
 		return;
 	}
 

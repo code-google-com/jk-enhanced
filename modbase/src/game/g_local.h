@@ -26,7 +26,7 @@ extern vec3_t gPainPoint;
 //==================================================================
 
 // the "gameversion" client command will print this plus compile date
-#define	GAMEVERSION	"JK Enhanced Dev Build"
+#define	GAMEVERSION	"JKE 0.x Dev Build"
 
 #define BODY_QUEUE_SIZE		8
 

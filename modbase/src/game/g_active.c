@@ -2548,7 +2548,7 @@ void ClientThink_real( gentity_t *ent ) {
 			G_AddEvent(duelAgainst, EV_PRIVATE_DUEL, 0);
 
 			//kaldor Duel Health
-			trap_SendServerCommand( -1, va("print \"%s ^7 won the duel!\nHealth: ^5%d^7/^5%d ^7 remains.\n\"",
+			trap_SendServerCommand( -1, va("print \"%s ^7 won the duel! Health: ^5%d^7/^5%d ^7 remains. \"",
 			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ));
 			//Duel Health end
 

@@ -73,7 +73,7 @@ seta g_gametype "0"
 
 seta fraglimit "0"
 
-seta bot_minplayers "3"
+seta bot_minplayers "0"
 
 seta bot_honorableduelacceptance "1"
 
@@ -283,15 +283,15 @@ seta g_weapondisable "524279"
 seta g_duelWeaponDisable "524279"
 seta g_forcepowerdisable "163837"
 
-seta disable_item_shield_lrg_instant "1" 
+seta disable_item_shield_lrg_instant "0" 
 
-seta disable_item_shield_sm_instant "1"
+seta disable_item_shield_sm_instant "0"
 
-seta disable_item_medpak_instant "1"
+seta disable_item_medpak_instant "0"
 
-seta disable_item_medpac "1"
+seta disable_item_medpac "0"
 
-seta disable_item_medpak "1" 
+seta disable_item_medpak "0" 
 
 seta timelimit "0"
 
@@ -588,7 +588,7 @@ seta g_gametype "3"
 seta fraglimit "1"
 seta duel_fraglimit "10"
 
-seta bot_minplayers "3"
+seta bot_minplayers "0"
 
 seta bot_honorableduelacceptance "1"
 
@@ -608,7 +608,7 @@ seta disable_item_medpak "1"
 
 seta timelimit "10"
 
-map mp/ffa3
+map mp/duel10
 
 seta g_allowBlackNames "1" 
 

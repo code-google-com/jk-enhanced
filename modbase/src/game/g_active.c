@@ -2548,7 +2548,7 @@ void ClientThink_real( gentity_t *ent ) {
 			G_AddEvent(duelAgainst, EV_PRIVATE_DUEL, 0);
 
 			//kaldor Duel Health
-			trap_SendServerCommand( -1, va("print \"%s ^7 won the duel! Health: ^5%d^7/^5%d ^7 remains. \"",
+			trap_SendServerCommand( -1, va("print \"%s ^7won the duel! Health: ^1%d^7/^2%d \"",
 			ent->client->pers.netname, ent->client->ps.stats[STAT_HEALTH], ent->client->ps.stats[STAT_ARMOR] ));
 			//Duel Health end
 
@@ -3117,6 +3117,9 @@ void ClientThink_real( gentity_t *ent ) {
 			}
 			if ( ent->m_pVehicle->m_pVehicleInfo->type == VH_WALKER )
 			{
+
+
+
 				if ( ent->client->ps.groundEntityNum != ENTITYNUM_NONE )
 				{//ATST crushes anything underneath it
 					gentity_t	*under = &g_entities[ent->client->ps.groundEntityNum];

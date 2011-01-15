@@ -260,7 +260,7 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_forceBasedTeams, "g_forceBasedTeams", "0", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_LATCH, 0, qfalse  },
 	{ &g_privateDuel, "g_privateDuel", "1", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qtrue  },
 
-	{ &g_allowNPC, "g_allowNPC", "1", CVAR_SERVERINFO | CVAR_CHEAT, 0, qtrue  },
+	{ &g_allowNPC, "g_allowNPC", "1", CVAR_SERVERINFO | CVAR_CHEAT, 0, qtrue  }, //kaldor - return to this
 
 	{ &g_armBreakage, "g_armBreakage", "0", 0, 0, qtrue  },
 
@@ -424,7 +424,7 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &d_altRoutes, "d_altRoutes", "0", CVAR_CHEAT, 0, qfalse },
 	{ &d_patched, "d_patched", "0", CVAR_CHEAT, 0, qfalse },
 
-	{ &g_saberRealisticCombat, "g_saberRealisticCombat", "0", CVAR_CHEAT },
+	{ &g_saberRealisticCombat, "g_saberRealisticCombat", "0", 0 }, //kaldor - removed cheat protection
 	{ &g_saberRestrictForce, "g_saberRestrictForce", "0", CVAR_CHEAT },
 	{ &d_saberSPStyleDamage, "d_saberSPStyleDamage", "1", 0},//CVAR_CHEAT }, //setementor - removed cheat protection temporarily for testing
 
@@ -1041,6 +1041,7 @@ void G_InitGame( int levelTime, int randomSeed, int restart ) {
 	{
 		trap_SetConfigstring ( CS_CLIENT_DUELISTS, va("-1|-1|-1") );
 	}
+
 	else
 	{
 		trap_SetConfigstring ( CS_CLIENT_DUELISTS, va("-1|-1") );
@@ -3448,6 +3449,7 @@ void CheckCvars( void ) {
 	static int lastMod = -1;
 	
 	if ( g_password.modificationCount != lastMod ) {
+
 		char password[MAX_INFO_STRING];
 		char *c = password;
 		lastMod = g_password.modificationCount;
